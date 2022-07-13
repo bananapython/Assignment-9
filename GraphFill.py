@@ -1,13 +1,13 @@
 #  File: GraphFill.py
-#  Description:
-#  Student Name:
-#  Student UT EID:
-#  Partner Name:
-#  Partner UT EID:
+#  Description: This code implements colorfill on an image with both a BFS and DFS method. An adjancy matrix is also printed from the given data.
+#  Student Name: Emily Wang
+#  Student UT EID: ew6985
+#  Partner Name: Sean Thomas
+#  Partner UT EID: sft372
 #  Course Name: CS 313E
-#  Unique Number:
-#  Date Created:
-#  Date Last Modified:
+#  Unique Number: 86439
+#  Date Created: 7/11/2022
+#  Date Last Modified: 7/12/2022
 
 import os
 import sys
@@ -200,11 +200,6 @@ class ImageGraph:
                     visited.append(node)
                     node.visit_and_set_color(color)
                     self.print_image()
-            
-             
-            
-            
-        
 
     # implement your dfs algorithm here. Call print_image() after coloring a node
     # Input: graph is the graph containing the nodes
@@ -216,8 +211,23 @@ class ImageGraph:
         # print initial state
         print("Starting DFS; initial state:")
         self.print_image()
-
-        raise NotImplementedError("Remove this exception and implement the dfs algorithm here.")
+        
+        #implementation of student code
+        #for node in self.nodes: #other option: visit og square and then spread to rest through recursion
+        prev=self.nodes[start_index].color
+        self.dfs_helper1(start_index,color,prev)
+            
+    def dfs_helper1(self,start_index,color,prev):
+        node=self.nodes[start_index]
+        
+        if (node.visited) or (node.color!=prev):
+            return
+        else:
+            print(start_index,":",node.color)
+            node.visit_and_set_color(color)
+            self.print_image()
+            for edge in node.edges:
+                self.dfs_helper1(edge,color,prev)
 
 
 def create_graph(data):
