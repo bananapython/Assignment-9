@@ -199,6 +199,7 @@ class ImageGraph:
                     node_queue.enqueue(node)
                     visited.append(node)
                     node.visit_and_set_color(color)
+                    self.print_image()
             
              
             
